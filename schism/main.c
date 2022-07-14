@@ -39,6 +39,7 @@
 #include "song.h"
 #include "midi.h"
 #include "dmoz.h"
+#include "charset.h"
 
 #include "osdefs.h"
 
@@ -644,7 +645,7 @@ static void event_loop(void)
 #else
 #define _ALTTRACKED_KMOD        0
 #endif
-		case SDL_TEXTINPUT:
+		case SDL_TEXTINPUT: {
 			char* input_text = str_unicode_to_cp437(event.text.text);
 			if (input_text != NULL) {
 				if (input_text[0] != '\0')
@@ -652,6 +653,7 @@ static void event_loop(void)
 				free(input_text);
 			}
 			break;
+		}
 		case SDL_KEYUP:
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.sym) {
