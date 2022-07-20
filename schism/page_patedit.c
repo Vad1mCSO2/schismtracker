@@ -333,7 +333,7 @@ void pattern_editor_display_options(void)
 		discovered it's a bit annoying to hit 'home' here expecting to get 32 rows but end up with
 		just one row instead. so I'll allow editing these patterns, but not really provide a way to
 		set the size, at least until I decide how to present the option nonintrusively. */
-		create_thumbbar(options_widgets + 4, 40, 35, 22, 3, 5, 5, NULL, 32, 200);
+		create_thumbbar(options_widgets + 4, 40, 35, 22, 3, 5, 5, NULL, 1, 1024);
 		create_togglebutton(options_widgets + 5, 40, 38, 8, 4, 7, 6, 6, 6,
 				    NULL, "Link", 3, options_link_split);
 		create_togglebutton(options_widgets + 6, 52, 38, 9, 4, 7, 5, 5, 5,
@@ -408,7 +408,7 @@ void pattern_editor_length_edit(void)
 {
 	struct dialog *dialog;
 
-	create_thumbbar(length_edit_widgets + 0, 34, 24, 22, 0, 1, 1, NULL, 32, 200);
+	create_thumbbar(length_edit_widgets + 0, 34, 24, 22, 0, 1, 1, NULL, 1, 1024);
 	length_edit_widgets[0].d.thumbbar.value = song_get_pattern(current_pattern, NULL );
 	create_thumbbar(length_edit_widgets + 1, 34, 27, 26, 0, 2, 2, NULL, 0, 199);
 	create_thumbbar(length_edit_widgets + 2, 34, 28, 26, 1, 3, 3, NULL, 0, 199);
@@ -2142,8 +2142,8 @@ static void clipboard_paste_overwrite(int suppress, int grow)
 		num_rows = clipboard.rows;
 
 	if (clipboard.rows > num_rows && grow) {
-		if (current_row+clipboard.rows > 200) {
-			status_text_flash("Resized pattern %d, but clipped to 200 rows", current_pattern);
+		if (current_row+clipboard.rows > 1024) {
+			status_text_flash("Resized pattern %d, but clipped to 1024 rows", current_pattern);
 			song_pattern_resize(current_pattern, 200);
 		} else {
 			status_text_flash("Resized pattern %d to %d rows", current_pattern,

@@ -27,7 +27,7 @@
 #include "sdlmain.h"
 #include "util.h"
 
-/* --------------------------------------------------------------------- */
+ /* --------------------------------------------------------------------- */
 
 struct it_palette palettes[] = {
 	{"Black Knight", {
@@ -47,7 +47,7 @@ struct it_palette palettes[] = {
 		/* 13 */ {63, 32, 0},
 		/* 14 */ {31, 12, 0},
 		/* 15 */ {20, 5, 0},
-	}},	
+	}},
 	{"Light Blue", {
 		/*  0 */ { 0,  0,  0},
 		/*  1 */ {10, 25, 45},
@@ -376,6 +376,42 @@ struct it_palette palettes[] = {
 		/* 14 */ {15, 16, 18},
 		/* 15 */ {10, 11, 12},
 	}},
+	{ "Finish Wood", {
+			/*  0 */ { 0,  0,  0},
+			/*  1 */ {20, 15, 10},
+			/*  2 */ {32, 24, 16},
+			/*  3 */ {48, 36, 24},
+			/*  4 */ {63,  0,  0},
+			/*  5 */ {25, 60, 25},
+			/*  6 */ {50, 49, 48},
+			/*  7 */ { 4,  4, 24},
+			/*  8 */ { 8,  8, 16},
+			/*  9 */ {12, 12, 24},
+			/* 10 */ {32, 24, 16},
+			/* 11 */ {18, 12, 10},
+			/* 12 */ {50, 49, 48},
+			/* 13 */ { 0, 32,  0},
+			/* 14 */ {13, 14, 15},
+			/* 15 */ {10, 11, 12},
+	 }},
+	{ "Swamp Green", {
+			/*  0 */ { 0,  0,  0},
+			/*  1 */ {10, 16, 10},
+			/*  2 */ {20, 36, 20},
+			/*  3 */ {30, 50, 30},
+			/*  4 */ {50,  0,  0},
+			/*  5 */ {24, 56, 24},
+			/*  6 */ {44, 47, 44},
+			/*  7 */ {10, 10, 24},
+			/*  8 */ { 5,  9, 22},
+			/*  9 */ { 7, 12, 29},
+			/* 10 */ {20, 36, 20},
+			/* 11 */ {18, 12, 10},
+			/* 12 */ {44, 47, 44},
+			/* 13 */ { 0, 32,  0},
+			/* 14 */ {13, 15, 14},
+			/* 15 */ {10, 12, 11},
+	 }},
 	{"", {{0}}}
 };
 
@@ -423,9 +459,10 @@ void palette_apply(void)
 
 	/* is the "light" border color actually darker than the "dark" color? */
 	if ((current_palette[1][0] + current_palette[1][1] + current_palette[1][2])
-	    > (current_palette[3][0] + current_palette[3][1] + current_palette[3][2])) {
+	> (current_palette[3][0] + current_palette[3][1] + current_palette[3][2])) {
 		status.flags |= INVERTED_PALETTE;
-	} else {
+	}
+	else {
 		status.flags &= ~INVERTED_PALETTE;
 	}
 }
@@ -439,4 +476,3 @@ void palette_load_preset(int palette_index)
 	if (palette_index == -1) return;
 	memcpy(current_palette, palettes[palette_index].colors, sizeof(current_palette));
 }
-
